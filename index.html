@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Punjab Sporting Trials</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#0a1225;
+color:white;
+text-align:center;
+}
+
+.hero{
+padding:70px;
+background:linear-gradient(135deg,#001d5a,#003fa3);
+}
+
+.form{
+margin-top:40px;
+}
+
+input,select{
+display:block;
+margin:10px auto;
+padding:12px;
+width:260px;
+}
+
+button{
+padding:14px 30px;
+background:#ffb400;
+border:none;
+font-weight:bold;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="hero">
+
+<h1>PUNJAB SPORTING</h1>
+
+<h2>FOOTBALL TRIALS</h2>
+
+<p>Venue: Imphal Main Stadium</p>
+
+</div>
+
+<div class="form">
+
+<h3>Register</h3>
+
+<form id="form">
+
+<input name="name" placeholder="Player Name" required>
+
+<input name="age" placeholder="Age" required>
+
+<select name="position">
+
+<option>Striker</option>
+<option>Midfielder</option>
+<option>Defender</option>
+<option>Goalkeeper</option>
+
+</select>
+
+<input name="phone" placeholder="Phone" required>
+
+<input name="email" placeholder="Email" required>
+
+<input type="file" name="video" required>
+
+<button type="submit">Register</button>
+
+</form>
+
+</div>
+
+<script>
+
+document.getElementById("form").onsubmit=async(e)=>{
+
+e.preventDefault()
+
+let form=new FormData(e.target)
+
+let res=await fetch("/register",{
+
+method:"POST",
+body:form
+
+})
+
+let data=await res.json()
+
+alert("Registration successful")
+
+let img=document.createElement("img")
+
+img.src=data.qr
+
+img.width=200
+
+document.body.appendChild(img)
+
+}
+
+</script>
+
+</body>
+
+</html>
